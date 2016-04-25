@@ -5,7 +5,7 @@
 #include <list.h>
 #include <stdint.h>
 #include "synch.h"
-
+#include "threads/fixed-point.h"
 /* States in a thread's life cycle. */
 enum thread_status
   {
@@ -106,8 +106,8 @@ struct thread
     int base_priority;                  /* Base priority. */
     struct list locks;                  /* Locks that the thread is holding. */
     struct lock *lock_waiting;          /* The lock that the thread is waiting for. */
-    //int nice;                           /* Niceness. */
-    //fixed_t recent_cpu;                 /* Recent CPU. */
+    int nice;                           /* Niceness. */
+    fixed_point_t recent_cpu;                 /* Recent CPU. */
   };
 
 /* If false (default), use round-robin scheduler.
